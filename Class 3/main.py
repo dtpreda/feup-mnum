@@ -66,6 +66,8 @@ def non_linear_system_newton_method_error(f1, f2, x0, y0, e):
 
 # print("Newton Method Result: ", non_linear_system_newton_method_error(2*x**2 + x*y - 5*x +1, x + 3*ln(x) - y**2, 4, 4, 0.000001))
 """
+
+
 def f1(x0, y0):
     return 2*x0**2 - x0*y0 - 5*x0 + 1
 
@@ -77,11 +79,14 @@ def f1dx(x0, y0):
 def f1dy(x0, y0):
     return -x0
 
+
 def f2(x0, y0):
     return x0 + 3*math.log(x0) - y0**2
 
+
 def f2dx(x0, y0):
     return 1 + 3/x0
+
 
 def f2dy(x0, y0):
     return -2*y0
@@ -103,6 +108,7 @@ def non_linear_newton_method(f1, f2, f1dx, f1dy, f2dx, f2dy, x0, y0, e):
         yn = y0 - (f2(x0, y0) * f1dx(x0, y0) - f1(x0, y0) * f2dx(x0, y0)) / (
                     f1dx(x0, y0) * f2dy(x0, y0) - f2dx(x0, y0) * f1dy(x0, y0))
     return (float(xn), float(yn))
+
 
 print("Newthon's Method Result: ", non_linear_newton_method(f1, f2, f1dx, f1dy, f2dx, f2dy, 4, 4, 0.000001))
 
@@ -129,5 +135,6 @@ def sympy_non_linear_newton_method(f1, f2, x0, y0, e): # too slow for such a sim
         yn = y0 - ((f2.subs(x, x0)).subs(y, y0) * (f1dx.subs(x, x0)).subs(y, y0) - (f1.subs(x, x0)).subs(y, y0) * (
             f2dx.subs(x, x0)).subs(y, y0)) / get_jacobian_at(f1dx, f2dx, f1dy, f2dy, x0, y0)
     return (float(xn), float(yn))
+
 
 # print("Newthon's Method Result: ", sympy_non_linear_newton_method(2*x**2 - x*y - 5*x +1, x + 3*ln(x) - y**2, 4, 4, 0.000001))
