@@ -21,4 +21,8 @@ def simpson_rule(f, a, b, h):
     return h/3*res
 
 
+def trapezoidal_rule(f, a, b, h):
+    
+
+
 # print(simpson_rule(sin, 0, pi, pi/64))
