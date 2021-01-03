@@ -10,9 +10,10 @@
 xi = 0
 xfinal = 5
 yi = 1
-n1 = 250000
+n1 = 10000
 n2 = n1*2
 n4 = n2*2
+
 
 def f1(x,y):
     return x**2
@@ -43,7 +44,7 @@ print("Epsilon\" (Euler): ", abs(euler_method(f1, xi, yi, xfinal, n4)[1] - euler
 def rk2(f, x0, y0, xf, n):
     x, y, dx, dy = x0, y0, (xf - x0) / n, 0
     for i in range(0, n):
-        dy = f(x + dx/2, y + dx*f(x, y)/2)*dx
+        dy = f(x + dx*0.5, y + dx*f(x, y))*dx
         y += dy
         x += dx
         # print("(x: ", x, ",y: ", y, ")\nError: ", abs(y - f2(x,y)), "\n")
@@ -52,7 +53,7 @@ def rk2(f, x0, y0, xf, n):
 
 print("\nRK2 Result: ", rk2(f1, xi, yi, xfinal, n4), sep="")
 
-qc = (rk2(f1, xi, yi, xfinal, n2)[1] - rk2(f1, xi, yi, xfinal, n1)[1])/(rk2(f1, xi, yi, xfinal, n4)[1] - rk2(f1, xi, yi, xfinal, n2)[1])
+qc = (rk2(f1, xi, yi, xfinal, n2)[1] - rk2(f1, xi, yi, xfinal, n1)[1]) / (rk2(f1, xi, yi, xfinal, n4)[1] - rk2(f1, xi, yi, xfinal, n2)[1])
 
 print("Quociente de Convergência (RK2): ", qc, sep="") # QC IS COMING OUT WRONG, SHOULD => 4
 print("Epsilon\" (RK2): ", abs(rk2(f1, xi, yi, xfinal, n4)[1] - rk2(f1, xi, yi, xfinal, n2)[1]), sep="")
