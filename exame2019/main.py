@@ -2,6 +2,8 @@ import numpy as np
 from matplotlib import pyplot as plt
 from math import sin
 from math import cos
+from math import sqrt
+from math import exp
 from zeroes import bissection_iter
 from system import non_linear_newton_method_iter
 
@@ -64,4 +66,78 @@ def f2dy(x, y):
 
 
 non_linear_newton_method_iter(f1, f2, f1dx, f1dy, f2dx, f2dy, 1, 1, 2)
+
+
+h1 = 0.25
+h2 = 0.125
+h3 = 0.0625
+a = 0
+b = 2
+
+
+def h(x, k=1.5):
+    return sqrt(1 + (k*exp(k*x))**2)
+
+
+def trap(f, a, b, h):
+    fa, fb = f(a), f(b)
+    res = fa + fb
+    n  = round((b - a) / h)
+    for i in range(1, n):
+        a += h
+        res += 2 * f(a)
+    return (h/2) * res
+
+
+def simp(f, a, b, h):
+    fa, fb = f(a), f(b)
+    res = fa + fb
+    n = round((b - a) / h)
+    for i in range(1, n):
+        a += h
+        if i % 2 == 0:
+            res += 2 * f(a)
+        else:
+            res += 4 * f(a)
+    return (h/3) * res
+
+
+print(f"h: {h1}")
+print(f"h': {h2}")
+print(f"h'': {h3}")
+print()
+
+print(f"l trap: {trap(h, a, b, h1)} l simp: {simp(h, a, b, h1)}")
+print(f"l' trap: {trap(h, a, b, h2)} l' simp: {simp(h, a, b, h2)}")
+print(f"l'' trap: {trap(h, a, b, h3)} l'' simp: {simp(h, a, b, h3)}")
+print()
+
+print(f"QC trap: {(trap(h, a, b, h2) - trap(h, a, b, h1)) / (trap(h, a, b, h3) - trap(h, a, b, h2))}")
+print(f"QC simp: {(simp(h, a, b, h2) - simp(h, a, b, h1)) / (simp(h, a, b, h3) - simp(h, a, b, h2))}")
+
+print(f"Trap error: {(trap(h, a, b, h3) - trap(h, a, b, h2)) / 3}")
+print(f"Trap error: {(simp(h, a, b, h3) - simp(h, a, b, h2)) / 15}")
+print()
+
+t0 = 2
+T0 = 2
+TA = 59
+
+
+def dj(T, t=0):
+    return -0.25 * (T - TA)
+
+
+def euler(f, t0, T0, h, n):
+    x, y, dx, dy = t0, T0, h, 0
+    for i in range(n):
+        dy = f(y, x)*dx
+        y += dy
+        x += dx
+    return y
+
+
+print(f"Integration result: {euler(dj, t0, T0, 0.5, 2)}")
+
+
 
