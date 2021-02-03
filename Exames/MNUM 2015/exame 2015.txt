@@ -1,0 +1,15 @@
+2. a) Limitação da quantidade de números representáveis, o que levará, invarialmente, a erros para qualquer função contínua. No entanto, dado que todos os números são representados no computador por inteiros, teremos menos erros por arredondamento ou truncatura.
+
+b) Menor limitação da quantidade de números representáveis face ao iterador anterior. No entanto, dependendo da precisão da máquina em uso, é mais provável existirem erros por arredondamento ou truncatura do que no iterador anterior.
+
+c) Semelhante ao iterador anterior, no entanto a multiplicação tem dois pontos negativos: o primeiro é que aumentamos o risco de induzir erros, dado que da própria multiplicação pode surgir um erro, que por sua vez aumentará o erro produzido na soma; o segundo é o maior peso computacional e a maior quantidade de operações face ao iterador anterior.
+
+d) Voltamos a ter limitação da quantidade de número representáveis, sendo estes dependentes do valor inicial de x. No entanto, dado que os computadores usam base 2, teremos uma maior precisão, dado que todos os algarismos serão uma potência de base 2. No entanto, o facto de dividirmos também aumenta a possibilidade de ocorrem erros, para além de implicar um ainda maior peso computacional do que a multiplicação.
+
+
+6.
+
+Para este caso, utilizaria o método de Levenberg-Marquardt. Os dois outros métodos disponíveis seriam o do gradiente e da quádrica. O método de Levenberg-Marquadt é precisamente a combinação desses dois métodos num só. Como esses dois métodos se complementam, falhando onde o outro sucede e sucedendo onde o outro falha, o método escolhido, ao juntar ambos, faz com que essas lacunas sejam preenchidas. 
+Como o método do gradiente é forte para zonas que não depressões alongadas, e fraco para depressões alongadas, e o da quádrica ao contrário, o Método de Levenberg-Marquardt é adequado para a generalidade de formas das funções. Como temos uma depressão alongada aproximadamente no centro do gráfico e declives superiores nas periferias, este é o método adequado pois irá suceder em cada parte do gráfico vísivel.
+
+A dificuldade aqui presta-se na escolha do lambda, o peso a atribuir ao método do gradiente dentro deste método. Dado que desconhecemos qual será a função no ponto inicial escolhido, escolher-se-ia um valor razoável para este fator, de forma a não favorecer em demasia um método em relação ao outro. Qualquer que seja o ponto em que estejamos, o método acabará por se autocorrigir, adaptando o lambda escolhido aos valores que for encontrando. Sugeriria, por exemplo, a escolha de um lambda 1 para este caso.

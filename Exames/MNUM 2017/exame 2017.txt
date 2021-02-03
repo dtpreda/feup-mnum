@@ -1,0 +1,23 @@
+1.a) Dado que o parâmetro a é experimental, após a escolha desse parâmetro, teremos uma função dependente apenas de uma variável. Logo, podemos aplicar tantos os métodos unidimensionais como os multidimensionais.
+
+Dos primeiros destacam-se os métodos intervalares, como o dos terços, da secção áurea ou da interpolação quádrica. Dos segundos destacam-se os métodos do gradiente, da quádrica e o de Levenberg-Marquardt.
+
+b) Resolução em anexo. Foi utilizado o método de Levenberg-Marquardt, dado que só precisa de um guess inicial próximo do mínimo, e, para além disso, funciona em diferentes tipos de função e de forma autocorretora.
+O número utilizado para a é 6.
+
+Analisando o gráfico da função, verificamos um mínimo local entre 0 e 5. Dado que os zeros da função são todos imaginários, e que para a direita de 5 e para a esquerda de -5 a função cresce, assumiremos que este valor será o mínimo absoluto. Guess inicial será 2, um valor relativamente próximo do ponto que pesquisamos.
+
+O lambda utilizado é de 0.01 pois dada a forma da função no local em estudo, estamos perante uma depressão ligeiramente alongada, pelo que devemos antecipadamente dar preferência ao método da quádrica em vez do do gradiente. Caso o método nos leve para fora deste local, o lambda será aumentado e o método do gradiente voltará a ter peso, pelo que este desvio do valor pretendido será corrigido.
+
+
+3. e^x - x - 5 = 0 (=) e^x = x + 5
+
+Para efeitos de simplificação, serão analisadas, graficamente, as interseções dos gráficos das funções de cada um dos lados da equação. Verifica-se uma interseção no intervalo [1,2] e outra no intervalo [-6, -4]. Dada a forma das funções, é seguro assumir que não haverão outras interseções. Logo, as únicas duas raízes da função inicial encontram-se nos intervalos [-6, -4] e [1, 2].
+
+A função e^x - 5 verifica as condições de convergência no intervalo [-6, -4], mas não no [1, 2], enquanto que a função de recorrência ln(x + 5) verifica as condições de convergência no intervalo [1, 2], mas não no [-6, -4].
+
+A formula de recorrência utilizada terá de ser, para a raiz maior, ln(x + 5).
+
+Comparando com o método de Newton, para a mesma precisão, o método de Newton demora menos uma iteração do que o método de Picard Peano. Contudo, o método de Newton exige o conhecimento da derivada da função. No entanto, relaxa a condição de convergência, que não é preciso verificar, ao contrário do método de Picard Peano.
+
+Portanto, em termos de eficiência computacional, o método de Newton demonstra-se preferível neste exemplo.

@@ -1,0 +1,12 @@
+2.
+2.1
+
+A solução mais correta será a solução com pivotagem parcial. A pivotagem parcial é utilizada para evitar erros de arrendondamento. Ao utilizar o maior valor absoluto disponível na linha a eliminar, evitamos dividir por valores relativamente pequenos comparativamente aos restantes valores da linha, e não obtemos valores ainda mais errados.
+
+2.2
+
+O método de pivotagem parcial evita alguns erros de arredondamento, pelo que só aí já ira diferir da solução sem pivotagem. Para além disso, poderemos ter erros diferentes com a pivotagem, pelo que nunca acabaremos com valores semelhantes.
+
+2.3
+
+Erros nos dados são chamados de instabilidade externa do sistema. Estes afetam os resultados finais, pois pequenas variações nos coeficientes ou termos independentes irão produzir variações nos resultados finais proporcionais a esses erros. Assim, se tivermos erros nos dados, teremos um resultado final diferente do resultado real do sistema.

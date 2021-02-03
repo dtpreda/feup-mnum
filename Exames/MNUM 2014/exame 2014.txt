@@ -1,0 +1,28 @@
+1.
+
+a) [0, 0.5] inclui 6 pontos (0, 0.1, 0.2, 0.3, 0.4, 0.5). Logo, o passo de integração é 0.1
+
+b) O valor inicial é 1 (Valor de x quando t = 0).
+
+c) Analisando os resultados do método no ficheiro em anexo, verificamos que a única opção válida para k seria 20.
+
+2. A função tem 3 zeros. Analisando interseções entre 40*cos(sqrt(x)) e x - 3, encontramos 3, e pela forma das funções sabe-se que não existirão mais. Assim sendo, temos apenas 3 zeros.
+
+4. Escolheria a equação b. 
+
+O método de Newton exige o conhecimento das derivadas das funções. A derivada da expressão a resulta numa potência de base x e expoente m - 1, enquanto que a da expressão b resulta em -m*R/x^(m+1). Enquanto que a derivada da expressão a resulta em menos operações, o que por sua vez diminui o peso computacional do método e a probabilidade de erros maiores, a derivada da expressão b aumenta o número de operações e continua a manter uma divisão, dois fatores que aumentarão o peso computacional e a ocorrência de erros, respetivamente.
+
+Assim sendo, em termos computacionais e de precisão, será preferível a equação a.
+
+Contudo, analisando para R = 10 e para diferentes valores de m, para a expressão b verificamos curvas bem definidas perto dos valores pretendidos, enquanto que para a expressão a temos, geralmente, gráficos quadráticos ou cúbicos, em que o declive do gráfico se altera de forma violenta após encontrar um dos zeros. Dado que o método de Newton depende essencialmente de tangentes, o processo irá convergir facilmente com a expressão B, desde que o guess não se afaste demasiado do valor pretendido.
+
+Assim sendo, escolho dar preferência a uma melhor convergência, visto que a precisão e a eficiência computacional podem sempre ser melhorados através das implementações dos métodos e de máquina para máquina, enquanto que a convergência depende apenas da equação.
+
+
+6. De forma a garantir um determinado erro absoluto máximo, executaria o seguinte algoritmo.
+
+Escolheria um h. Com base nesse h, calcularia o integral definido entre a e b com um dos métodos de integração utilizados. Repeteria o mesmo processo com h' = h/2 e h'' = h'/2. 
+
+Calcularia o QC, de forma a verificar a validade da minha solução. Em caso de não validez, será necessário recomeçar o processo, com um h mais pequeno (divida-se por dois). Caso seja válido, poderei aumentar estimar o erro absoluto para a solução calculada com h'' com E'' = (S'' - S')/(2^(ordem do método) - 1). Se o erro estimado for igual ou inferior ao erro absoluto máximo, podemos aceitar esta solução. Caso seja superior, devemos repetir o processo, começando agora com metade do passo (h = h/2). 
+
+Evidentemente, o peso computacional torna-se-á cada vez mais pesado. Caso o peso comece a ser excessivo, devemos optar por um método de ordem superior, de forma a ser possível obter maior precisão com passos maiores.
